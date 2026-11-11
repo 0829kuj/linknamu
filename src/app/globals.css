@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
+/*
+ * 일출 하늘 그라데이션: 위쪽 맑은 하늘색 → 아래쪽 연한 주황색.
+ * 프로필 사진(구름 위 비행기 날개와 햇살)의 색감에서 가져왔습니다.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --sky-top: #bfe2f6;
+  --sky-mid: #e8f3f8;
+  --sky-glow: #fff0e2;
+  --sky-bottom: #ffd9bd;
+
+  --background: var(--sky-mid);
+  --foreground: #1f2b3d;
+
+  --shadow-tint: 56 82 120;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-pretendard), system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
 
+/* 다크 모드: 해 뜨기 직전의 새벽 하늘 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --sky-top: #0f1a2e;
+    --sky-mid: #1b2943;
+    --sky-glow: #3a3346;
+    --sky-bottom: #5a3d2e;
+
+    --background: var(--sky-mid);
+    --foreground: #eef2f8;
+
+    --shadow-tint: 0 0 0;
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: linear-gradient(
+    180deg,
+    var(--sky-top) 0%,
+    var(--sky-mid) 40%,
+    var(--sky-glow) 70%,
+    var(--sky-bottom) 100%
+  );
+  background-attachment: fixed;
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
 }
