@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer";
-import LinkCard from "@/components/LinkCard";
+import LinkList from "@/components/LinkList";
 import ProfileHeader from "@/components/ProfileHeader";
 import { profile } from "@/data/profile";
 
@@ -9,14 +9,8 @@ export default function Home() {
       {/* 상단: 원형 프로필 사진, 이름, 한 줄 소개 */}
       <ProfileHeader name={profile.name} bio={profile.bio} imageUrl={profile.imageUrl} />
 
-      {/* 하단: 링크 카드 세로 배치 */}
-      <ul className="mt-12 flex flex-col gap-4">
-        {profile.links.map((link) => (
-          <li key={link.id}>
-            <LinkCard title={link.title} url={link.url} />
-          </li>
-        ))}
-      </ul>
+      {/* 하단: 링크 카드 세로 배치 + 클릭 수 */}
+      <LinkList links={profile.links} />
 
       <Footer />
     </main>
